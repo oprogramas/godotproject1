@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
-[ext_resource type="PackedScene" path="res://scenes/tree.tscn" id="2_tree"]
 [ext_resource type="Script" path="res://scripts/item.gd" id="3_item"]
+[ext_resource type="Script" path="res://scripts/forest_generator.gd" id="4_forest"]
 [ext_resource type="Texture2D" path="res://assets/textures/grass.png" id="4_grass"]
 
 [sub_resource type="BoxMesh" id="1"]
@@ -104,41 +104,8 @@ surface_material_override/0 = SubResource("3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("2")
 
-[node name="Tree1" parent="." instance=ExtResource("2_tree")]
-position = Vector3(5, 0, -8)
-
-[node name="Tree2" parent="." instance=ExtResource("2_tree")]
-position = Vector3(-7, 0, -5)
-
-[node name="Tree3" parent="." instance=ExtResource("2_tree")]
-position = Vector3(10, 0, 3)
-
-[node name="Tree4" parent="." instance=ExtResource("2_tree")]
-position = Vector3(-4, 0, 10)
-
-[node name="Tree5" parent="." instance=ExtResource("2_tree")]
-position = Vector3(8, 0, 8)
-
-[node name="Tree6" parent="." instance=ExtResource("2_tree")]
-position = Vector3(-10, 0, -10)
-
-[node name="Tree7" parent="." instance=ExtResource("2_tree")]
-position = Vector3(3, 0, 14)
-
-[node name="Tree8" parent="." instance=ExtResource("2_tree")]
-position = Vector3(-8, 0, 6)
-
-[node name="Tree9" parent="." instance=ExtResource("2_tree")]
-position = Vector3(12, 0, -4)
-
-[node name="Tree10" parent="." instance=ExtResource("2_tree")]
-position = Vector3(-13, 0, 2)
-
-[node name="Tree11" parent="." instance=ExtResource("2_tree")]
-position = Vector3(2, 0, -12)
-
-[node name="Tree12" parent="." instance=ExtResource("2_tree")]
-position = Vector3(-6, 0, -14)
+[node name="Forest" type="Node3D" parent="."]
+script = ExtResource("4_forest")
 
 [node name="Rock1" type="StaticBody3D" parent="."]
 position = Vector3(2, 0.3, 4)
