@@ -1,0 +1,236 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/tree.tscn" id="2_tree"]
+[ext_resource type="Script" path="res://scripts/item.gd" id="3_item"]
+[ext_resource type="Texture2D" path="res://assets/textures/grass.png" id="4_grass"]
+
+[sub_resource type="BoxMesh" id="1"]
+size = Vector3(100, 0.2, 100)
+
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(100, 0.2, 100)
+
+[sub_resource type="StandardMaterial3D" id="3"]
+albedo_color = Color(0.9, 0.9, 0.9, 1)
+albedo_texture = ExtResource("4_grass")
+uv1_scale = Vector3(100, 100, 1)
+roughness = 0.9
+roughness_texture_channel = 0
+
+[sub_resource type="SphereMesh" id="4"]
+radius = 0.2
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="5"]
+albedo_color = Color(0.9, 0.8, 0.1, 1)
+emission_enabled = true
+emission = Color(0.9, 0.8, 0.1, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="SphereShape3D" id="6"]
+radius = 0.3
+
+[sub_resource type="ProceduralSkyMaterial" id="7"]
+sky_top_color = Color(0.18, 0.42, 0.82, 1)
+sky_horizon_color = Color(0.72, 0.88, 1.0, 1)
+ground_bottom_color = Color(0.12, 0.35, 0.08, 1)
+ground_horizon_color = Color(0.38, 0.58, 0.28, 1)
+sun_angle_max = 60.0
+
+[sub_resource type="Sky" id="8"]
+sky_material = SubResource("7")
+
+[sub_resource type="BoxMesh" id="10"]
+size = Vector3(1.2, 0.8, 1.0)
+
+[sub_resource type="BoxShape3D" id="11"]
+size = Vector3(1.2, 0.8, 1.0)
+
+[sub_resource type="StandardMaterial3D" id="12"]
+albedo_color = Color(0.46, 0.43, 0.38, 1)
+roughness = 0.95
+
+[sub_resource type="Environment" id="9"]
+background_mode = 2
+sky = SubResource("8")
+ambient_light_source = 3
+ambient_light_energy = 1.0
+ssao_enabled = true
+ssao_radius = 1.0
+ssao_intensity = 2.0
+ssao_power = 1.5
+ssao_sharpness = 0.98
+glow_enabled = true
+glow_normalized = false
+glow_intensity = 0.6
+glow_bloom = 0.05
+glow_blend_mode = 2
+tonemap_mode = 2
+tonemap_exposure = 1.0
+tonemap_white = 6.0
+adjustment_enabled = true
+adjustment_saturation = 1.25
+adjustment_contrast = 1.08
+fog_enabled = true
+fog_density = 0.004
+fog_light_color = Color(0.65, 0.78, 0.65, 1)
+
+[node name="Level01" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("9")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-55, 30, 0)
+light_energy = 1.5
+light_color = Color(1.0, 0.96, 0.88, 1)
+shadow_enabled = true
+directional_shadow_mode = 2
+directional_shadow_split_1 = 0.1
+directional_shadow_split_2 = 0.2
+directional_shadow_split_3 = 0.5
+directional_shadow_blend_splits = true
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(0, 1, 0)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("1")
+surface_material_override/0 = SubResource("3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("2")
+
+[node name="Tree1" parent="." instance=ExtResource("2_tree")]
+position = Vector3(5, 0, -8)
+
+[node name="Tree2" parent="." instance=ExtResource("2_tree")]
+position = Vector3(-7, 0, -5)
+
+[node name="Tree3" parent="." instance=ExtResource("2_tree")]
+position = Vector3(10, 0, 3)
+
+[node name="Tree4" parent="." instance=ExtResource("2_tree")]
+position = Vector3(-4, 0, 10)
+
+[node name="Tree5" parent="." instance=ExtResource("2_tree")]
+position = Vector3(8, 0, 8)
+
+[node name="Tree6" parent="." instance=ExtResource("2_tree")]
+position = Vector3(-10, 0, -10)
+
+[node name="Tree7" parent="." instance=ExtResource("2_tree")]
+position = Vector3(3, 0, 14)
+
+[node name="Tree8" parent="." instance=ExtResource("2_tree")]
+position = Vector3(-8, 0, 6)
+
+[node name="Tree9" parent="." instance=ExtResource("2_tree")]
+position = Vector3(12, 0, -4)
+
+[node name="Tree10" parent="." instance=ExtResource("2_tree")]
+position = Vector3(-13, 0, 2)
+
+[node name="Tree11" parent="." instance=ExtResource("2_tree")]
+position = Vector3(2, 0, -12)
+
+[node name="Tree12" parent="." instance=ExtResource("2_tree")]
+position = Vector3(-6, 0, -14)
+
+[node name="Rock1" type="StaticBody3D" parent="."]
+position = Vector3(2, 0.3, 4)
+rotation = Vector3(0.1, 0.8, 0.15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rock1"]
+mesh = SubResource("10")
+surface_material_override/0 = SubResource("12")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock1"]
+shape = SubResource("11")
+
+[node name="Rock2" type="StaticBody3D" parent="."]
+position = Vector3(-3, 0.3, -6)
+rotation = Vector3(0.2, 1.4, 0.05)
+scale = Vector3(1.5, 1.2, 1.3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rock2"]
+mesh = SubResource("10")
+surface_material_override/0 = SubResource("12")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock2"]
+shape = SubResource("11")
+
+[node name="Rock3" type="StaticBody3D" parent="."]
+position = Vector3(9, 0.3, -2)
+rotation = Vector3(0.0, 2.1, 0.1)
+scale = Vector3(0.8, 0.7, 0.9)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rock3"]
+mesh = SubResource("10")
+surface_material_override/0 = SubResource("12")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock3"]
+shape = SubResource("11")
+
+[node name="Rock4" type="StaticBody3D" parent="."]
+position = Vector3(-7, 0.3, 8)
+rotation = Vector3(0.15, 0.3, 0.2)
+scale = Vector3(2.0, 1.4, 1.8)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rock4"]
+mesh = SubResource("10")
+surface_material_override/0 = SubResource("12")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock4"]
+shape = SubResource("11")
+
+[node name="Rock5" type="StaticBody3D" parent="."]
+position = Vector3(5, 0.3, 10)
+rotation = Vector3(0.05, 1.0, 0.1)
+scale = Vector3(1.1, 0.9, 1.2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rock5"]
+mesh = SubResource("10")
+surface_material_override/0 = SubResource("12")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock5"]
+shape = SubResource("11")
+
+[node name="Item1" type="Area3D" parent="." groups=["item"]]
+position = Vector3(4, 0.5, -3)
+script = ExtResource("3_item")
+item_name = "Diário Rasgado"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Item1"]
+mesh = SubResource("4")
+surface_material_override/0 = SubResource("5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Item1"]
+shape = SubResource("6")
+
+[node name="Item2" type="Area3D" parent="." groups=["item"]]
+position = Vector3(-6, 0.5, 2)
+script = ExtResource("3_item")
+item_name = "Chave Enferrujada"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Item2"]
+mesh = SubResource("4")
+surface_material_override/0 = SubResource("5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Item2"]
+shape = SubResource("6")
+
+[node name="Item3" type="Area3D" parent="." groups=["item"]]
+position = Vector3(7, 0.5, 6)
+script = ExtResource("3_item")
+item_name = "Fotografia Estranha"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Item3"]
+mesh = SubResource("4")
+surface_material_override/0 = SubResource("5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Item3"]
+shape = SubResource("6")

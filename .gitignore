@@ -1,0 +1,17 @@
+# Godot 4 - ficheiros gerados automaticamente
+.godot/
+*.import
+*.uid
+/android/
+
+# Builds
+exports/
+builds/
+
+# VS Code
+.vscode/
+
+# Sistema operativo
+Thumbs.db
+.DS_Store
+desktop.ini

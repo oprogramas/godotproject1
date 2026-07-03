@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3]
+
+[sub_resource type="CylinderMesh" id="1"]
+top_radius = 0.12
+bottom_radius = 0.42
+height = 6.0
+
+[sub_resource type="CylinderShape3D" id="2"]
+radius = 0.28
+height = 6.0
+
+[sub_resource type="StandardMaterial3D" id="3"]
+albedo_color = Color(0.28, 0.14, 0.05, 1)
+roughness = 0.95
+
+[sub_resource type="SphereMesh" id="4"]
+radius = 2.8
+height = 4.0
+
+[sub_resource type="SphereMesh" id="5"]
+radius = 2.1
+height = 3.0
+
+[sub_resource type="SphereMesh" id="6"]
+radius = 1.4
+height = 2.2
+
+[sub_resource type="StandardMaterial3D" id="7"]
+albedo_color = Color(0.08, 0.36, 0.08, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="8"]
+albedo_color = Color(0.06, 0.3, 0.06, 1)
+roughness = 1.0
+
+[node name="Tree" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 3, 0)
+shape = SubResource("2")
+
+[node name="Trunk" type="MeshInstance3D" parent="."]
+position = Vector3(0, 3, 0)
+mesh = SubResource("1")
+surface_material_override/0 = SubResource("3")
+
+[node name="Foliage_Low" type="MeshInstance3D" parent="."]
+position = Vector3(0.4, 5.0, 0.2)
+scale = Vector3(1, 0.75, 1)
+mesh = SubResource("4")
+surface_material_override/0 = SubResource("7")
+
+[node name="Foliage_Mid" type="MeshInstance3D" parent="."]
+position = Vector3(-0.2, 6.8, -0.3)
+scale = Vector3(1, 0.8, 1)
+mesh = SubResource("5")
+surface_material_override/0 = SubResource("8")
+
+[node name="Foliage_Top" type="MeshInstance3D" parent="."]
+position = Vector3(0.1, 8.2, 0.1)
+mesh = SubResource("6")
+surface_material_override/0 = SubResource("7")
